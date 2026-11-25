@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+painel/dados/
+.env
+*.log
+*.hex
+*.elf
+*.bin
+.DS_Store

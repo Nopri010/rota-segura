@@ -1,0 +1,16 @@
+[Unit]
+Description=Rota Segura
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/rota-segura
+Environment=PYTHONUNBUFFERED=1
+Environment=PORTA_ARDUINO=/dev/ttyACM0
+ExecStart="%h/rota-segura/.venv/bin/python" -m painel.app --modo real --porta ${PORTA_ARDUINO} --host 0.0.0.0 --port 5000
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=10
+
+[Install]
+WantedBy=default.target

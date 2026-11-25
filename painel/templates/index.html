@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rota Segura | Monitor da bancada</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+<header class="top"><div class="logo" aria-hidden="true">↗</div><div>ROTA SEGURA <span>/</span> Monitor da bancada</div><span id="clock">Aguardando conexão</span></header>
+<main>
+  <div class="intro"><div><div class="eyebrow">HARDWARE ARCHITECTURE</div><h1>Rota Segura</h1><p>Dois trechos monitorados. Um caminho disponível na tela.</p></div><span id="mode" class="badge">AGUARDANDO DADOS</span></div>
+  <p id="warning" class="notice" role="status">Aguardando a primeira mensagem válida.</p>
+  <div class="layout">
+    <section class="panel map-panel" aria-label="Mapa esquemático">
+      <canvas id="map" width="870" height="524" role="img" aria-label="Aguardando dados dos trechos"></canvas>
+      <div class="map-tag">MAPA ESQUEMÁTICO · RUAS FICTÍCIAS</div>
+      <div class="legend"><span><i class="blue"></i> Rota indicada</span><span><i class="red"></i> Trecho bloqueado</span><span><i class="orange"></i> Sensor indisponível</span><span><i class="gray"></i> Outra via</span></div>
+    </section>
+    <aside class="panel readout" aria-live="polite">
+      <div class="eyebrow">ORIGEM → DESTINO</div><h2 id="headline">Aguardando comunicação</h2><p id="detail"></p>
+      <div id="routes">
+        <article><div><b>Trecho A</b><span id="state-a" class="state unknown">SEM DADOS</span></div><p id="reading-a"></p><p id="distance-a"></p><div class="gate-line"><span id="gate-a" class="gate" data-command="DESCONHECIDO" aria-hidden="true"><span class="gate-post"></span><span class="gate-arm"></span></span><p id="servo-a"></p></div></article>
+        <article><div><b>Trecho B</b><span id="state-b" class="state unknown">SEM DADOS</span></div><p id="reading-b"></p><p id="distance-b"></p><div class="gate-line"><span id="gate-b" class="gate" data-command="DESCONHECIDO" aria-hidden="true"><span class="gate-post"></span><span class="gate-arm"></span></span><p id="servo-b"></p></div></article>
+      </div>
+      <div class="environment"><div class="eyebrow">TEMPERATURA E UMIDADE DO AR</div><div id="environment">Indisponíveis</div></div>
+      <div id="serial" class="serial down"><i></i><span>Aguardando Arduino</span></div>
+      <p id="ping" class="small"></p>
+    </aside>
+  </div>
+  <section class="panel history"><h2>Histórico de mudanças</h2><p>Horário exibido no fuso deste navegador. Leituras repetidas não criam novos eventos.</p><div class="table-wrap"><table><thead><tr><th>Horário</th><th>Origem</th><th>Estado</th><th>Nível</th></tr></thead><tbody id="events"><tr><td colspan="4">Aguardando registros</td></tr></tbody></table></div></section>
+  <footer>Protótipo acadêmico de bancada. A posição física da cancela é conferida pelo operador.<span>MAPA OFFLINE</span></footer>
+</main>
+<script src="{{ url_for('static', filename='mapa.js') }}"></script>
+<script src="{{ url_for('static', filename='painel.js') }}"></script>
+</body>
+</html>
